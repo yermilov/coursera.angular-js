@@ -25,13 +25,42 @@
     <body>
 
         <div class="container">
-            <div class="row row-content">
+            <div class="row row-content" ng-controller="dishDetailController as dishDetailController">
+
                 <div class="col-xs-12">
-                    <p>Put the dish details here</p>
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object img-thumbnail" ng-src={{dishDetailController.dish.image}} alt={{dishDetailController.dish.name}}>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">
+                                {{dishDetailController.dish.name}}
+                                <span class="label label-danger">{{dishDetailController.dish.label}}</span>
+                                <span class="badge">{{dishDetailController.dish.price | currency}}</span>
+                            </h2>
+                            <p>{{dishDetailController.dish.description}}</p>
+
+                            <p>Order by: <input type="text" ng-model="dishDetailController.order"></p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="col-xs-9 col-xs-offset-1">
-                    <p>Put the comments here</p>
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="comment in dishDetailController.dish.comments | orderBy: dishDetailController.order">
+                            <div class="media-body">
+                                <blockquote>
+                                    <p>{{comment.comment}}</p>
+                                    <p>Rating: {{comment.rating}}</p>
+                                    <footer>{{comment.author}} at {{comment.date | date}}</footer>
+                                </blockquote>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
+
             </div>
 
         </div>
@@ -83,6 +112,7 @@
                             };
                 
                 this.dish = dish;
+                this.order = '';
             });
 
         </script>
