@@ -2,34 +2,31 @@
 
 module.exports = function (grunt) {
 
-  // Define the configuration for all the tasks
-  grunt.initConfig({
+    // Time how long tasks take. Can help when optimizing build times
+    require('time-grunt')(grunt);
 
-      // Time how long tasks take. Can help when optimizing build times
-      require('time-grunt')(grunt);
+    // Automatically load required Grunt tasks
+    require('jit-grunt')(grunt, {
+    	useminPrepare: 'grunt-usemin'
+    });
 
-      // Automatically load required Grunt tasks
-       require('jit-grunt')(grunt, {
-	       useminPrepare: 'grunt-usemin'
-	   });
+    // Define the configuration for all the tasks
+    grunt.initConfig({          
+	    pkg: grunt.file.readJSON('package.json'),
 
-      // Define the configuration for all the tasks
-      grunt.initConfig({          
-        pkg: grunt.file.readJSON('package.json'),
-
-        // Make sure code styles are up to par and there are no obvious mistakes
-        jshint: {
-          options: {
-            jshintrc: '.jshintrc',
-            reporter: require('jshint-stylish')
-          },
-          all: {
-            src: [
-              'Gruntfile.js',
-              'app/scripts/{,*/}*.js'
-            ]
-          }
-        },
+	    // Make sure code styles are up to par and there are no obvious mistakes
+	    jshint: {
+	      options: {
+	        jshintrc: '.jshintrc',
+	        reporter: require('jshint-stylish')
+	      },
+	      all: {
+	        src: [
+	          'Gruntfile.js',
+	          'app/scripts/{,*/}*.js'
+	        ]
+	      }
+	    },
 	    copy: {
 	      dist: {
 	        cwd: 'app',
@@ -40,20 +37,20 @@ module.exports = function (grunt) {
 	      fonts: {
 	          files:[
 	          	{
-                  	//for bootstrap fonts
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components/bootstrap/dist',
-                    src: ['fonts/*.*'],
-                    dest: 'dist'
-                }, {
-                    //for font-awesome
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components/font-awesome',
-                    src: ['fonts/*.*'],
-                    dest: 'dist'
-                }
+	              	//for bootstrap fonts
+	                expand: true,
+	                dot: true,
+	                cwd: 'bower_components/bootstrap/dist',
+	                src: ['fonts/*.*'],
+	                dest: 'dist'
+	            }, {
+	                //for font-awesome
+	                expand: true,
+	                dot: true,
+	                cwd: 'bower_components/font-awesome',
+	                src: ['fonts/*.*'],
+	                dest: 'dist'
+	            }
 	          ]
 	        }
 	    },
@@ -153,9 +150,9 @@ module.exports = function (grunt) {
 	        }
 	      }
 	    }
-      });
+	});
 
-      grunt.registerTask('build', [
+    grunt.registerTask('build', [
 	  	'clean',
 	    'jshint',
 	    'useminPrepare',
@@ -165,10 +162,9 @@ module.exports = function (grunt) {
 	    'copy',
 	    'filerev',
 	    'usemin'
-	  ]);
+  	]);
 
-	  grunt.registerTask('serve',['build','connect:dist','watch']);
+  	grunt.registerTask('serve',['build','connect:dist','watch']);
 
-      grunt.registerTask('default',['build']);
-  });
+  	grunt.registerTask('default',['build']);
 };
