@@ -3,7 +3,6 @@
 angular .module('confusionApp')
 
         .service('menuFactory', function() {
-    
             var dishes=[
                          {
                           _id:0,
@@ -173,7 +172,8 @@ angular .module('confusionApp')
                                
                            ]
                         }
-                        ];
+            ];
+            
             var promotions = [
                 {
                           _id:0,
@@ -186,21 +186,17 @@ angular .module('confusionApp')
                 
             ];
     
-                this.getDishes = function(){
-                    
-                    return dishes;
-                    
-                };
-    
-                this.getDish = function (index) {
-                    
-                    return dishes[index];
-                };
-    
-                // implement a function named getPromotion
-                // that returns a selected promotion.
-    
-                        
+            this.getDishes = function(){
+                return dishes;
+            };
+
+            this.getDish = function (index) {
+                return dishes[index];
+            };
+
+            this.getPromotion = function(index) {
+                return promotions[index];
+            };       
         })
 
         .factory('corporateFactory', function() {
@@ -236,14 +232,17 @@ angular .module('confusionApp')
                     abbr: "EC",
                     description: "Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!"
                 }
-                
             ];
-     
-            // Implement two functions, one named getLeaders,
-            // the other named getLeader(index)
-            // Remember this is a factory not a service
-    
-    
+
+            corpfac.getLeaders = function() {
+                return leadership;
+            };
+
+            corpfac.getLeader = function(index) {
+                return leadership[index];
+            };
+
+            return corpfac;    
         })
 
 ;

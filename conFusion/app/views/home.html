@@ -5,7 +5,20 @@
             <h3 align=center>Our Lipsmacking Culinary Creations</h3>
         </div>
         <div class="col-xs-12 col-sm-9 col-sm-pull-3">
-			<h4>Implement the Featured Dish Here</h4>
+			<div class="media">
+                <div class="media-left media-middle">
+                    <a ui-sref="app.dishdetails({id: topdish._id})">
+                        <img class="media-object img-thumbnail" ng-src={{topdish.image}} alt="Uthappizza">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading">{{topdish.name}}
+                        <span class="label label-danger">{{topdish.label}}</span>
+                        <span class="badge">{{topdish.price | currency}}</span>
+                    </h2>
+                    <p>{{topdish.description}}</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -16,7 +29,20 @@
             <h3 align=center>This Month's Promotions</h3>
         </div>
         <div class="col-xs-12 col-sm-9">
-			<h4>Implement the Promotion Here</h4>
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a ui-sref="app.dishdetails({id: promotion._id})">
+                        <img class="media-object img-thumbnail" ng-src={{promotion.image}} alt="Uthappizza">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading">{{promotion.name}}
+                        <span class="label label-danger">{{promotion.label}}</span>
+                        <span class="badge">{{promotion.price | currency}}</span>
+                    </h2>
+                    <p>{{promotion.description}}</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -26,7 +52,15 @@
             <h3 align=center>Meet our Culinary Specialists</h3>
         </div>
         <div class="col-xs-12 col-sm-9 col-sm-pull-3">
-			<h4>Implement the Executive Chef Info Here</h4>
+			<div class="media">
+                <div class="media-left media-middle">
+                    <img class="media-object img-thumbnail" ng-src={{exec.image}} alt="Uthappizza">
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading">{{exec.name}} <small>{{exec.designation}}</small></h2>
+                    <p>{{exec.description}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
