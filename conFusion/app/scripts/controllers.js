@@ -48,7 +48,7 @@ angular .module('confusionApp')
             $scope.sendFeedback = function() {
                 console.log($scope.feedback);
                 
-                if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
+                if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
                     $scope.invalidChannelSelection = true;
                     console.log('incorrect');
                 } else {
@@ -78,8 +78,21 @@ angular .module('confusionApp')
                 $scope.commentForm.$setPristine();
                 
                 $scope.mycomment = {rating:5, comment:"", author:"", date:""};
-            }
+            };
         }])
 
-        // implement the IndexController and About Controller here
+        .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
+            $scope.leaders = corporateFactory.getLeaders();
+        }])
+
+        .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
+            $scope.topdish = menuFactory.getDish(0);
+            $scope.promotion = menuFactory.getPromotion(0);
+
+            for (var i = 0; i < corporateFactory.getLeaders().length; i++) {
+                if (corporateFactory.getLeader(i).abbr === 'EC') {
+                    $scope.exec = corporateFactory.getLeader(i);                    
+                }
+            }            
+        }])
 ;
